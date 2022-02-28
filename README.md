@@ -4,7 +4,7 @@
 
 <span align="center">
 
-# homebridge-http-ipcamera-battery
+# homebridge-http-esp8266-battery
 
 </span>
 
