@@ -10,11 +10,13 @@
 
 ## Description
 
-This [homebridge](https://github.com/homebridge/homebridge) plugin exposes a web-based battery status to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin displays the battery status of [iPCamera - High-End NetworkCam (iOS App)](https://apps.apple.com/us/app/ipcamera-high-end-networkcam/id570912928).
+This [homebridge](https://github.com/homebridge/homebridge) plugin exposes a web-based battery status to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin displays the filespace useage of and ESP8266 as a battery.
 
-I need some automation when the battery is at certain percentage, I want to switch on the iPhone charger. Too bad we can't do automation with BatteryService, but we can with TemperaturService. That is why I displayed the battery level in degress.
+I needed to monitory the file space usage of an ESP8266 that I'm using as a garage door opener.  The system takes images when the door opens or closes and I want to monitor the file space usage
 
-I modified the codes I found [here](https://github.com/phenotypic/homebridge-http-thermometer). Thanks phenotypic.
+I modified the code from the iPCameraBattery accesory from Homebridge Http Ipcamera Battery
+
+homebridge-http-ipcamera-battery v1.0.0 (2022-01-24)
 
 ## Installation
 
@@ -27,8 +29,8 @@ I modified the codes I found [here](https://github.com/phenotypic/homebridge-htt
 ```json
 "accessories": [
      {
-       "accessory": "iPCameraBattery",
-       "name": "iPCameraBattery",
+       "accessory": "iPesp8266Battery",
+       "name": "iPesp8266Battery",
        "apiroute": "http://192.168.0.229",
        "pollInterval": 300,   //default (optional)
        "timeout": 3000        //default (optional)
