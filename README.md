@@ -14,9 +14,7 @@ This [homebridge](https://github.com/homebridge/homebridge) plugin exposes a web
 
 I needed to monitory the file space usage of an ESP8266 that I'm using as a garage door opener.  The system takes images when the door opens or closes and I want to monitor the file space usage
 
-I modified the code from the iPCameraBattery accesory from Homebridge Http Ipcamera Battery
-
-homebridge-http-ipcamera-battery v1.0.0 (2022-01-24)
+I modified the code from the [iPCameraBattery accesory](https://github.com/rohaizanr/homebridge-http-ipcamera-battery)
 
 ## Installation
 
