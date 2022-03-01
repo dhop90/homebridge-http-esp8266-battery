@@ -1,6 +1,6 @@
 {
   "pluginAlias": "esp8266Battery",
-  "pluginType": "platform",
+  "pluginType": "accessory",
   "singular": true,
   "schema": {
     "type": "object",
@@ -9,7 +9,13 @@
         "title": "Name",
         "type": "string",
         "required": true,
-        "default": "Example Dynamic Platform"
+        "default": "ESP8266 Battery"
+      },
+      "apiroute": {
+        "title": "apiroute",
+        "type": "string",
+        "required": true,
+        "default": "http://esp8266IPaddress"
       }
     }
   }

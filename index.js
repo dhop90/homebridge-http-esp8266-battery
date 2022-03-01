@@ -63,18 +63,24 @@ esp8266Battery.prototype = {
           var batteryString = ""
           var currentTemp = ""
           var humidity = ""
+          var sketchVer = ""
    
           batteryString = (parseInt(json.RemainingBytes) / parseInt(json.TotalBytes) ) * 100
           currentTemp = parseInt(json.temperature)
           humidity = parseInt(json.humidity)
+          sketchVer = json.SketchVersion
 
           this.BatteryLevel = batteryString
-          this.CurrentTemperature = currentTemp 
+          this.log.warn('currentTemp : %s', currentTemp)
+          this.CurrentTemperature = (currentTemp - 32) * 5/9 
           this.Humidity = humidity
+          this.SketchVer = sketchVer
 
           this.BatteryService.getCharacteristic(Characteristic.BatteryLevel).updateValue(this.BatteryLevel)
           this.TemperatureSensor.getCharacteristic(Characteristic.CurrentTemperature).updateValue(this.CurrentTemperature);
           this.HumiditySensor.getCharacteristic(Characteristic.CurrentRelativeHumidity).updateValue(this.Humidity);
+          this.informationService.getCharacteristic(Characteristic.SerialNumber).updateValue(this.SketchVer);
+          this.informationService.getCharacteristic(Characteristic.SoftwareRevision).updateValue(this.SketchVer);
 
           if(this.BatteryLevel <= 50) {
             this.BatteryService.setCharacteristic(Characteristic.StatusLowBattery, Characteristic.StatusLowBattery.BATTERY_LEVEL_LOW);
@@ -86,6 +92,8 @@ esp8266Battery.prototype = {
           this.log.warn('Updated BatteryLevel to: %s', this.BatteryLevel)
           this.log.warn('Updated Temperature to: %s', this.CurrentTemperature)
           this.log.warn('Updated HumidityLevel to: %s', this.Humidity)
+          this.log.warn('Updated SoftwareRevision to: %s', this.SketchVer)
+
           callback()
         } catch (e) {
           this.log.warn('Error parsing status: %s', e.message)
