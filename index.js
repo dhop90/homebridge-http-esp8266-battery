@@ -6,10 +6,10 @@ module.exports = function (homebridge) {
   API = homebridge;
   Service = homebridge.hap.Service
   Characteristic = homebridge.hap.Characteristic
-  homebridge.registerAccessory('homebridge-http-esp8266-battery', 'iPesp8266Battery', iPesp8266Battery)
+  homebridge.registerAccessory('homebridge-http-esp8266-battery', 'esp8266Battery', esp8266Battery)
 }
 
-function iPesp8266Battery (log, config) {
+function esp8266Battery (log, config) {
   this.log = log
 
   this.name = config.name
@@ -27,7 +27,7 @@ function iPesp8266Battery (log, config) {
   this.BatteryLevel = null;
 }
 
-iPesp8266Battery.prototype = {
+esp8266Battery.prototype = {
 
   identify: function (callback) {
     this.log('Identify.')
@@ -57,24 +57,35 @@ iPesp8266Battery.prototype = {
         this.BatteryService.getCharacteristic(Characteristic.BatteryLevel).updateValue(new Error('Polling failed'))
         callback(error)
       } else {
-        this.log.debug('Device response: %s', responseBody)
+        this.log.warn('Device response: %s', responseBody)
         try {
           const json = JSON.parse(responseBody)
           var batteryString = ""
-          batteryString = json.battery
-          this.BatteryLevel = batteryString.replace(" %", "")
-          this.CurrentTemperature = this.BatteryLevel 
+          var currentTemp = ""
+          var humidity = ""
+   
+          batteryString = (parseInt(json.RemainingBytes) / parseInt(json.TotalBytes) ) * 100
+          currentTemp = parseInt(json.temperature)
+          humidity = parseInt(json.humidity)
+
+          this.BatteryLevel = batteryString
+          this.CurrentTemperature = currentTemp 
+          this.Humidity = humidity
 
           this.BatteryService.getCharacteristic(Characteristic.BatteryLevel).updateValue(this.BatteryLevel)
           this.TemperatureSensor.getCharacteristic(Characteristic.CurrentTemperature).updateValue(this.CurrentTemperature);
-          if(this.BatteryLevel <= 10) {
+          this.HumiditySensor.getCharacteristic(Characteristic.CurrentRelativeHumidity).updateValue(this.Humidity);
+
+          if(this.BatteryLevel <= 50) {
             this.BatteryService.setCharacteristic(Characteristic.StatusLowBattery, Characteristic.StatusLowBattery.BATTERY_LEVEL_LOW);
           }
           else {
             this.BatteryService.setCharacteristic(Characteristic.StatusLowBattery, Characteristic.StatusLowBattery.BATTERY_LEVEL_NORMAL);
           }
 
-          this.log.debug('Updated BatteryLevel to: %s', this.BatteryLevel)
+          this.log.warn('Updated BatteryLevel to: %s', this.BatteryLevel)
+          this.log.warn('Updated Temperature to: %s', this.CurrentTemperature)
+          this.log.warn('Updated HumidityLevel to: %s', this.Humidity)
           callback()
         } catch (e) {
           this.log.warn('Error parsing status: %s', e.message)
@@ -94,6 +105,9 @@ iPesp8266Battery.prototype = {
     // Temperature Sensor service
     this.TemperatureSensor = new Service.TemperatureSensor(this.name);
 
+    // Humidity Sensor service
+    this.HumiditySensor = new Service.HumiditySensor(this.name);
+
     // Battery service
     this.BatteryService = new Service.BatteryService(this.name);
     
@@ -103,6 +117,6 @@ iPesp8266Battery.prototype = {
       this._getStatus(function () {})
     }.bind(this), this.pollInterval * 1000)
 
-    return [this.informationService, this.BatteryService, this.TemperatureSensor]
+    return [this.informationService, this.BatteryService, this.TemperatureSensor, this.HumiditySensor]
   }
 }

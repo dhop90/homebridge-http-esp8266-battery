@@ -1,0 +1,19 @@
+,
+        {
+            "accessory": "iPesp8266Battery",
+            "name": "Dave Garage ESP8266",
+            "apiroute": "http://pi:auto55.Car@dave-garage",
+            "_bridge": {
+                "username": "0E:A7:56:D7:A6:DC",
+                "port": 34845
+            }
+        },
+        {
+            "accessory": "iPesp8266Battery",
+            "name": "Shelly Garage ESP8266",
+            "apiroute": "http://pi:auto55.Car@shelly-garage",
+            "_bridge": {
+                "username": "0E:A7:56:D7:A6:DC",
+                "port": 34845
+            }
+        }

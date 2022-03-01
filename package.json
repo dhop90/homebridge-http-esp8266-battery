@@ -1,5 +1,6 @@
 {
-  "name": "homebridge-http-esp8266-battery",
+  "name": "homebridge-http-esp8266-Battery",
+  "displayName" : "Homebridge ESP8266 Filespace as a Battery Temp Humidity",
   "version": "1.0.0",
   "description": "Homebridge plugin for displaying the filespace usage of an ESP8266 as a battery, plus temperature and humidity",
   "main": "index.js",
@@ -15,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dhop90/homebridge-http-esp8266-battery.git"
+    "url": "https://github.com/dhop90/homebridge-http-esp8266-battery.git"
   },
   "keywords": [
     "homebridge-plugin"
   ],
-  "author": "rohaizanr",
+  "author": "dhop90",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/dhop90/homebridge-http-esp8266-battery.git"
   },
-  "homepage": "https://github.com/dhop90/homebridge-http-esp8266-battery/#readme"
+  "homepage": "https://github.com/dhop90/homebridge-http-esp8266-battery#readme"
 }
