@@ -21,7 +21,7 @@ homebridge-http-ipcamera-battery v1.0.0 (2022-01-24)
 ## Installation
 
 1. Install [homebridge](https://github.com/homebridge/homebridge#installation)
-2. Install this plugin: `npm install -g homebridge-http-ipcamera-battery`
+2. Install this plugin: `npm install -g homebridge-http-esp8266-battery`
 3. Update your `config.json` file
 
 ## Configuration
@@ -29,8 +29,8 @@ homebridge-http-ipcamera-battery v1.0.0 (2022-01-24)
 ```json
 "accessories": [
      {
-       "accessory": "iPesp8266Battery",
-       "name": "iPesp8266Battery",
+       "accessory": "esp8266Battery",
+       "name": "esp8266Battery",
        "apiroute": "http://192.168.0.229",
        "pollInterval": 300,   //default (optional)
        "timeout": 3000        //default (optional)
