@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginAlias": "esp8266Battery",
   "pluginType": "platform",
   "singular": true,
   "schema": {
