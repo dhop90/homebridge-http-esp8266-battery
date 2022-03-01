@@ -10,9 +10,9 @@
 
 ## Description
 
-This [homebridge](https://github.com/homebridge/homebridge) plugin exposes a web-based battery status to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin displays the filespace useage of and ESP8266 as a battery.
+This [homebridge](https://github.com/homebridge/homebridge) plugin exposes a web-based battery status to Apple's [HomeKit](http://www.apple.com/ios/home/). Using simple HTTP requests, the plugin displays the file space useage of an ESP8266 as a battery, plus Temperature and Humidity.
 
-I needed to monitory the file space usage of an ESP8266 that I'm using as a garage door opener.  The system takes images when the door opens or closes and I want to monitor the file space usage
+I needed to monitory the file space usage of an ESP8266 that I'm using as a garage door opener.  The system takes images when the door opens or closes and I want to monitor the file space usage.
 
 I modified the code from the [iPCameraBattery accesory](https://github.com/rohaizanr/homebridge-http-ipcamera-battery)
 
