@@ -27,7 +27,7 @@ function iPesp8266Battery (log, config) {
   this.BatteryLevel = null;
 }
 
-iPCameraBattery.prototype = {
+iPesp8266Battery.prototype = {
 
   identify: function (callback) {
     this.log('Identify.')
@@ -92,9 +92,9 @@ iPCameraBattery.prototype = {
       .setCharacteristic(Characteristic.FirmwareRevision, this.firmware)
 
     // Temperature Sensor service
-		this.TemperatureSensor = new Service.TemperatureSensor(this.name);
+    this.TemperatureSensor = new Service.TemperatureSensor(this.name);
 
-		// Battery service
+    // Battery service
     this.BatteryService = new Service.BatteryService(this.name);
     
     this._getStatus(function () {})
